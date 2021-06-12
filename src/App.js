@@ -62,6 +62,23 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+
+  moveBook = (bookName,newShelf) => {
+    let newArray = this.state.books.map((b)=>{
+      if (b.title === bookName ){
+        b.shelf = newShelf
+        return b
+      }
+      else {
+        return b
+      }
+    
+    })
+    this.setState((currentState)=>({
+      books: newArray
+    }))
+  }
+
   render() {
     const CurrentlyReading = this.state.books.filter(book =>book.shelf==='currentlyReading');
     const WantToRead = this.state.books.filter(book =>book.shelf==='wantToRead');
