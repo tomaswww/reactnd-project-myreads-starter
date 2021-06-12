@@ -6,7 +6,7 @@ const Book = (props) => {
     return (
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+props.image+')'}}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+props.image+'")'}}></div>
                   <ShelfChanger shelf={props.shelf} />
               </div>
               <div className="book-title">{props.title}</div>
