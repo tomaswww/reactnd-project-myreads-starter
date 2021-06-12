@@ -4,26 +4,24 @@ class ShelfChanger extends Component {
   constructor(props) {
     super(props);
     console.log(props)
-    this.state = {value: props.shelf};
+    this.state = {value: props.shelf, title:props.title};
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
-
-  handleSubmit(event) {
-    alert('New shelf is: ' + this.state.value);
-    event.preventDefault();
+  
+  moveBook(event) {
+    console.log(event.target.value,this.state.title)
   }
 
   render() {
     return (
             <div className="book">
                 <div className="book-shelf-changer">
-                      <select value={this.state.value} onChange={this.handleChange}>
+                      <select value={this.state.value} onChange={e => {this.handleChange(e); this.moveBook(e)}}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

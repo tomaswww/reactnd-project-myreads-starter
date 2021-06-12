@@ -121,7 +121,7 @@ class BooksApp extends React.Component {
                       {
                         CurrentlyReading.map(book =>
                           <li>
-                            <Book title={book.title} author={book.author} image={book.image} shelf={book.shelf}/>
+                            <Book title={book.title} author={book.author} image={book.image} shelf={book.shelf} moveBook={this.moveBook}/>
                           </li>
                           )
                       }
