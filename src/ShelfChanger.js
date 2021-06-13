@@ -15,9 +15,7 @@ class ShelfChanger extends Component {
   }
   
   moveBook(event) {
-    let newShelf = event.target.value;
-    let bookID = this.state.book.id;
-    BooksAPI.update(bookID,newShelf);
+    BooksAPI.update(this.state.book.id,event.target.value);
   }  
 
 
