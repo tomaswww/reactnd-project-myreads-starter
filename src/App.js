@@ -1,6 +1,8 @@
 import React from 'react'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -11,13 +13,6 @@ class BooksApp extends React.Component {
       {shelf:"read"}
     ],
     books: [],
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false
   }
 
   componentDidMount() {
@@ -53,10 +48,12 @@ class BooksApp extends React.Component {
     const Read = this.state.books.filter(book =>book.shelf==='read');
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        <Route path='/search' render={()=> (
           <div className="search-books">
             <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+              <Link to='/'>
+                <button className="close-search">Close</button>
+              </Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -74,81 +71,83 @@ class BooksApp extends React.Component {
               <ol className="books-grid"></ol>
             </div>
           </div>
-        ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {
-                        CurrentlyReading.map(book =>
-                          <li key={book.id}>
-                            <Book 
-                            title={book.title} 
-                            id={book.id} 
-                            author={book.authors} 
-                            image={book.imageLinks.thumbnail} 
-                            shelf={book.shelf} 
-                            moveBook={this.moveBook}/>
-                          </li>
-                          )
-                      }
-                    </ol>
+        )} />
+        <Route exact path='/' render={()=> (
+            <div className="list-books">
+              <div className="list-books-title">
+                <h1>MyReads</h1>
+              </div>
+              <div className="list-books-content">
+                <div>
+                  <div className="bookshelf">
+                    <h2 className="bookshelf-title">Currently Reading</h2>
+                    <div className="bookshelf-books">
+                      <ol className="books-grid">
+                        {
+                          CurrentlyReading.map(book =>
+                            <li key={book.id}>
+                              <Book 
+                              title={book.title} 
+                              id={book.id} 
+                              author={book.authors} 
+                              image={book.imageLinks.thumbnail} 
+                              shelf={book.shelf} 
+                              moveBook={this.moveBook}/>
+                            </li>
+                            )
+                        }
+                      </ol>
+                    </div>
                   </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {
-                        WantToRead.map(book =>
-                          <li key={book.id}>
-                            <Book 
-                            title={book.title}
-                            id={book.id} 
-                            author={book.authors} 
-                            image={book.imageLinks.thumbnail} 
-                            shelf={book.shelf}
-                            moveBook={this.moveBook}/>
-                          </li>
-                          )
-                      }
-                    </ol>
+                  <div className="bookshelf">
+                    <h2 className="bookshelf-title">Want to Read</h2>
+                    <div className="bookshelf-books">
+                      <ol className="books-grid">
+                        {
+                          WantToRead.map(book =>
+                            <li key={book.id}>
+                              <Book 
+                              title={book.title}
+                              id={book.id} 
+                              author={book.authors} 
+                              image={book.imageLinks.thumbnail} 
+                              shelf={book.shelf}
+                              moveBook={this.moveBook}/>
+                            </li>
+                            )
+                        }
+                      </ol>
+                    </div>
                   </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {
-                        Read.map(book =>
-                          <li key={book.id}>
-                            <Book 
-                            title={book.title} 
-                            id={book.id} 
-                            author={book.authors} 
-                            image={book.imageLinks.thumbnail} 
-                            shelf={book.shelf}
-                            moveBook={this.moveBook}/>
-                          </li>
-                          )
-                      }
-                    </ol>
+                  <div className="bookshelf">
+                    <h2 className="bookshelf-title">Read</h2>
+                    <div className="bookshelf-books">
+                      <ol className="books-grid">
+                        {
+                          Read.map(book =>
+                            <li key={book.id}>
+                              <Book 
+                              title={book.title} 
+                              id={book.id} 
+                              author={book.authors} 
+                              image={book.imageLinks.thumbnail} 
+                              shelf={book.shelf}
+                              moveBook={this.moveBook}/>
+                            </li>
+                            )
+                        }
+                      </ol>
+                    </div>
                   </div>
                 </div>
               </div>
+              <Link
+                to='/search'
+                className="open-search"
+                ><button>Add a book</button></Link>
             </div>
-            <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-            </div>
-          </div>
-        )}
-      </div>
+        )} />
+      </div>          
     )
   }
 }
