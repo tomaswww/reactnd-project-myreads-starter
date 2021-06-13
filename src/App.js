@@ -70,7 +70,7 @@ class BooksApp extends React.Component {
                               title={book.title} 
                               id={book.id} 
                               author={book.authors} 
-                              image={book.imageLinks.thumbnail} 
+                              image={book.imageLinks} 
                               shelf={book.shelf} 
                               moveBook={this.moveBook}/>
                             </li>
@@ -90,7 +90,7 @@ class BooksApp extends React.Component {
                               title={book.title}
                               id={book.id} 
                               author={book.authors} 
-                              image={book.imageLinks.thumbnail} 
+                              image={book.imageLinks} 
                               shelf={book.shelf}
                               moveBook={this.moveBook}/>
                             </li>
@@ -110,7 +110,7 @@ class BooksApp extends React.Component {
                               title={book.title} 
                               id={book.id} 
                               author={book.authors} 
-                              image={book.imageLinks.thumbnail} 
+                              image={book.imageLinks} 
                               shelf={book.shelf}
                               moveBook={this.moveBook}/>
                             </li>
