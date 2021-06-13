@@ -87,9 +87,10 @@ class BooksApp extends React.Component {
                     <ol className="books-grid">
                       {
                         CurrentlyReading.map(book =>
-                          <li>
+                          <li key={book.id}>
                             <Book 
                             title={book.title} 
+                            id={book.id} 
                             author={book.authors} 
                             image={book.imageLinks.thumbnail} 
                             shelf={book.shelf} 
@@ -106,9 +107,10 @@ class BooksApp extends React.Component {
                     <ol className="books-grid">
                       {
                         WantToRead.map(book =>
-                          <li>
+                          <li key={book.id}>
                             <Book 
-                            title={book.title} 
+                            title={book.title}
+                            id={book.id} 
                             author={book.authors} 
                             image={book.imageLinks.thumbnail} 
                             shelf={book.shelf}
@@ -125,9 +127,10 @@ class BooksApp extends React.Component {
                     <ol className="books-grid">
                       {
                         Read.map(book =>
-                          <li>
+                          <li key={book.id}>
                             <Book 
                             title={book.title} 
+                            id={book.id} 
                             author={book.authors} 
                             image={book.imageLinks.thumbnail} 
                             shelf={book.shelf}

@@ -11,9 +11,9 @@ const Book = (props) => {
                 </div>
               </div>
               <div className="book-title">{props.title}</div>
-              {props.author.map(author =>
-                          <div className="book-authors">{author}</div>
-              )}              
+                {props.author.map(author =>
+                  <div className="book-authors" key={author}>{author}</div>
+                )}              
             </div>
     )
 }
