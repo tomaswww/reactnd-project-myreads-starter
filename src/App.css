@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
 html, body, .root {
   height: 100%;
+  font-family: 'Staatliches', cursive;
 }
 
 body {
@@ -7,14 +10,14 @@ body {
 }
 
 body, .app {
-  background: white;
+  background: rgb(205, 243, 201);
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: #67a569;
   text-align: center;
 }
 

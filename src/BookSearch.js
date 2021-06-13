@@ -12,7 +12,6 @@ class BookSearch extends Component {
   getResults(query) {
     BooksAPI.search(query)
       .then((books) => {
-        console.log(books)
         if (typeof books !== 'undefined'){
           if (books.length > 0){
             this.setState(() => ({
