@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ShelfChanger from './ShelfChanger'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
 import './App.css'
