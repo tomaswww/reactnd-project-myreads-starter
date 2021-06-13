@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import './App.css'
 
 class ShelfChanger extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {value: props.shelf, title:props.title};
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,7 +15,10 @@ class ShelfChanger extends Component {
   
   moveBook(event) {
     console.log(event.target.value,this.state.title)
+    this.props.moveBook(event.target.value,this.state.title)
   }
+  
+
 
   render() {
     return (
