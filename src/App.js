@@ -27,22 +27,6 @@ class BooksApp extends React.Component {
       
   }
 
-  moveBook = (bookName,newShelf) => {
-    let newArray = this.state.books.map((b)=>{
-      if (b.title === bookName ){
-        b.shelf = newShelf
-        return b
-      }
-      else {
-        return b
-      }
-    
-    })
-    this.setState((currentState)=>({
-      books: newArray
-    }))
-  }
-
   render() {
     const CurrentlyReading = this.state.books.filter(book =>book.shelf==='currentlyReading');
     const WantToRead = this.state.books.filter(book =>book.shelf==='wantToRead');
@@ -68,7 +52,8 @@ class BooksApp extends React.Component {
                             <li key={book.id}>
                               <Book 
                               title={book.title} 
-                              id={book.id} 
+                              id={book} 
+                              key={book.id} 
                               author={book.authors} 
                               image={book.imageLinks} 
                               shelf={book.shelf} 
@@ -88,7 +73,8 @@ class BooksApp extends React.Component {
                             <li key={book.id}>
                               <Book 
                               title={book.title}
-                              id={book.id} 
+                              id={book} 
+                              key={book.id} 
                               author={book.authors} 
                               image={book.imageLinks} 
                               shelf={book.shelf}
@@ -108,7 +94,8 @@ class BooksApp extends React.Component {
                             <li key={book.id}>
                               <Book 
                               title={book.title} 
-                              id={book.id} 
+                              id={book} 
+                              key={book.id}
                               author={book.authors} 
                               image={book.imageLinks} 
                               shelf={book.shelf}

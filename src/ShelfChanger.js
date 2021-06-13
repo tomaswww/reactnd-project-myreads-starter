@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class ShelfChanger extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: props.shelf, title:props.title};
+    this.state = {value: props.shelf, title:props.title, book:props};
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -14,10 +15,10 @@ class ShelfChanger extends Component {
   }
   
   moveBook(event) {
-    console.log(event.target.value,this.state.title)
-    this.props.moveBook(event.target.value,this.state.title)
-  }
-  
+    let newShelf = event.target.value;
+    let bookID = this.state.book.id;
+    BooksAPI.update(bookID,newShelf);
+  }  
 
 
   render() {

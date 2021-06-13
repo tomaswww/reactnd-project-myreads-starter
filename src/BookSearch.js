@@ -12,6 +12,7 @@ class BookSearch extends Component {
   getResults(query) {
     BooksAPI.search(query)
       .then((books) => {
+        console.log(books)
         if (typeof books !== 'undefined'){
           if (books.length > 0){
             this.setState(() => ({
@@ -32,8 +33,8 @@ class BookSearch extends Component {
           }))
         }
       })
-      
   }
+
   render(){
     return (
             <div className="search-books">
@@ -59,11 +60,11 @@ class BookSearch extends Component {
                 {this.state.books.map((book)=>(
                   <Book 
                     title={book.title} 
-                    id={book.id} 
+                    id={book}
+                    key={book.id} 
                     author={book.authors} 
                     image={book.imageLinks} 
-                    shelf={book.shelf} 
-                    moveBook={this.moveBook}
+                    shelf="none"
                   />
                 ))}
               </ol>

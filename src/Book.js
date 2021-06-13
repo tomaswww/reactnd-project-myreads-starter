@@ -8,11 +8,11 @@ const Book = (props) => {
               <div className="book-top">
                 { props.image ?
                   <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+props.image.thumbnail+'")'}}>
-                    <ShelfChanger shelf={props.shelf} title={props.title} moveBook={props.moveBook}/>
+                    <ShelfChanger shelf={props.shelf} title={props.title} id={props.id}/>
                   </div>
                   :
                   <div className="book-cover" style={{ width: 128, height: 193}}>
-                    <ShelfChanger shelf={props.shelf} title={props.title} moveBook={props.moveBook}/>
+                    <ShelfChanger shelf={props.shelf} title={props.title} id={props.id}/>
                   </div>
                 } 
               </div>
