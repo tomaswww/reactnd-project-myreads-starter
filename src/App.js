@@ -26,6 +26,16 @@ class BooksApp extends React.Component {
       
   }
 
+  refresh = () => {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+      })
+      
+  }
+
   render() {
     const CurrentlyReading = this.state.books.filter(book =>book.shelf==='currentlyReading');
     const WantToRead = this.state.books.filter(book =>book.shelf==='wantToRead');
@@ -33,7 +43,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path='/search' render={()=> (
-          <BookSearch />
+          <BookSearch refresh={this.refresh} />
         )} />
         <Route exact path='/' render={()=> (
             <div className="list-books">
@@ -56,7 +66,7 @@ class BooksApp extends React.Component {
                               author={book.authors} 
                               image={book.imageLinks} 
                               shelf={book.shelf} 
-                              moveBook={this.moveBook}/>
+                              refresh={this.refresh}/>
                             </li>
                             )
                         }
@@ -77,7 +87,7 @@ class BooksApp extends React.Component {
                               author={book.authors} 
                               image={book.imageLinks} 
                               shelf={book.shelf}
-                              moveBook={this.moveBook}/>
+                              refresh={this.refresh}/>
                             </li>
                             )
                         }
@@ -98,7 +108,7 @@ class BooksApp extends React.Component {
                               author={book.authors} 
                               image={book.imageLinks} 
                               shelf={book.shelf}
-                              moveBook={this.moveBook}/>
+                              refresh={this.refresh}/>
                             </li>
                             )
                         }

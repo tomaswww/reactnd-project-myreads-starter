@@ -34,12 +34,16 @@ class BookSearch extends Component {
       })
   }
 
+  refresh = () => {
+      this.props.refresh()
+  }
+
   render(){
     return (
             <div className="search-books">
             <div className="search-books-bar">
               <Link to='/'>
-                <button className="close-search">Close</button>
+                <button className="close-search" onClick={this.refresh()} >Close</button>
               </Link>
               <div className="search-books-input-wrapper">
                 {/*
@@ -64,6 +68,7 @@ class BookSearch extends Component {
                     author={book.authors} 
                     image={book.imageLinks} 
                     shelf="none"
+                    refresh="none"
                   />
                 ))}
               </ol>
