@@ -6,7 +6,8 @@ import Book from './Book'
 
 class BookSearch extends Component {
   state = {
-    books: []
+    books: [],
+    booksOnShelf: this.props.booksOnShelf
   }
 
   getResults(query) {
@@ -14,6 +15,17 @@ class BookSearch extends Component {
       .then((books) => {
         if (typeof books !== 'undefined'){
           if (books.length > 0){
+            books.map (b => {
+              const bookInShelf = this.props.booksOnShelf.find(bk =>bk.id===b.id)
+                if (bookInShelf) {
+                  b.shelf = bookInShelf.shelf
+                }
+                else {
+                  b.shelf = "none"
+
+                }
+                return b
+            })
             this.setState(() => ({
               books
           }))
@@ -39,10 +51,6 @@ class BookSearch extends Component {
   }
 
   render(){
-      let shelf ='none'
-      if (this.state.books.shelf !== 'undefined') {
-        shelf = this.state.books.shelf
-      }
       return (
             <div className="search-books">
             <div className="search-books-bar">
@@ -71,7 +79,7 @@ class BookSearch extends Component {
                     key={book.id} 
                     author={book.authors} 
                     image={book.imageLinks} 
-                    shelf={shelf}
+                    shelf={book.shelf}
                     refresh="none"
                   />
                 ))}

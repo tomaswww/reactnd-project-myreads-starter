@@ -1,5 +1,4 @@
 import React from 'react'
-import Book from './Book'
 import Shelf from './Shelf'
 import BookSearch from './BookSearch'
 import * as BooksAPI from './BooksAPI'
@@ -41,7 +40,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path='/search' render={()=> (
-          <BookSearch refresh={this.refresh} />
+          <BookSearch refresh={this.refresh} booksOnShelf={this.state.books}/>
         )} />
         <Route exact path='/' render={()=> (
             <div className="list-books">
