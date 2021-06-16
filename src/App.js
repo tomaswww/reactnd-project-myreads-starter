@@ -1,5 +1,6 @@
 import React from 'react'
 import Book from './Book'
+import Shelf from './Shelf'
 import BookSearch from './BookSearch'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
@@ -37,9 +38,6 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    const CurrentlyReading = this.state.books.filter(book =>book.shelf==='currentlyReading');
-    const WantToRead = this.state.books.filter(book =>book.shelf==='wantToRead');
-    const Read = this.state.books.filter(book =>book.shelf==='read');
     return (
       <div className="app">
         <Route path='/search' render={()=> (
@@ -52,69 +50,10 @@ class BooksApp extends React.Component {
               </div>
               <div className="list-books-content">
                 <div>
-                  <div className="bookshelf">
-                    <h2 className="bookshelf-title">Currently Reading</h2>
-                    <div className="bookshelf-books">
-                      <ol className="books-grid">
-                        {
-                          CurrentlyReading.map(book =>
-                            <li key={book.id}>
-                              <Book 
-                              title={book.title} 
-                              id={book} 
-                              key={book.id} 
-                              author={book.authors} 
-                              image={book.imageLinks} 
-                              shelf={book.shelf} 
-                              refresh={this.refresh}/>
-                            </li>
-                            )
-                        }
-                      </ol>
-                    </div>
-                  </div>
-                  <div className="bookshelf">
-                    <h2 className="bookshelf-title">Want to Read</h2>
-                    <div className="bookshelf-books">
-                      <ol className="books-grid">
-                        {
-                          WantToRead.map(book =>
-                            <li key={book.id}>
-                              <Book 
-                              title={book.title}
-                              id={book} 
-                              key={book.id} 
-                              author={book.authors} 
-                              image={book.imageLinks} 
-                              shelf={book.shelf}
-                              refresh={this.refresh}/>
-                            </li>
-                            )
-                        }
-                      </ol>
-                    </div>
-                  </div>
-                  <div className="bookshelf">
-                    <h2 className="bookshelf-title">Read</h2>
-                    <div className="bookshelf-books">
-                      <ol className="books-grid">
-                        {
-                          Read.map(book =>
-                            <li key={book.id}>
-                              <Book 
-                              title={book.title} 
-                              id={book} 
-                              key={book.id}
-                              author={book.authors} 
-                              image={book.imageLinks} 
-                              shelf={book.shelf}
-                              refresh={this.refresh}/>
-                            </li>
-                            )
-                        }
-                      </ol>
-                    </div>
-                  </div>
+                  {this.state.categories.map(cat =>
+                    <Shelf shelfName={cat.shelf} books={this.state.books} refresh={this.refresh}/> 
+                    )
+                  }
                 </div>
               </div>
               <Link

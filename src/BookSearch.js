@@ -39,7 +39,11 @@ class BookSearch extends Component {
   }
 
   render(){
-    return (
+      let shelf ='none'
+      if (this.state.books.shelf !== 'undefined') {
+        shelf = this.state.books.shelf
+      }
+      return (
             <div className="search-books">
             <div className="search-books-bar">
               <Link to='/'>
@@ -67,7 +71,7 @@ class BookSearch extends Component {
                     key={book.id} 
                     author={book.authors} 
                     image={book.imageLinks} 
-                    shelf="none"
+                    shelf={shelf}
                     refresh="none"
                   />
                 ))}
